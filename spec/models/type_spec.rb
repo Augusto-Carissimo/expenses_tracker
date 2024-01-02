@@ -11,9 +11,9 @@ RSpec.describe Type, type: :model do
   end
 
   describe 'methods' do
-    let!(:type) { create(:exercise) }
+    let!(:type) { create(:type) }
     let!(:expense1) { create(:expense, type:, cost: 100, created_at: DateTime.current) }
-    let!(:expense2) { create(:expense, type:, cost: 100, created_at: (DateTime.current- 1.months)) }
+    let!(:expense2) { create(:expense, type:, cost: 100, created_at: (DateTime.current - 1.months)) }
 
     it 'month expense' do
       expect(type.month_expense).to eq(100)
