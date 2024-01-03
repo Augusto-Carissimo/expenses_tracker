@@ -1,9 +1,6 @@
 class ExpensesController < ApplicationController
   def create
-    p params[:expense][:type_id]
-    p Type.find(params[:expense][:type_id]).name
-
-    @expense = Expense.new(params.require(:expense).permit(:cost, :type_id))
+    @expense = Expense.new(params.require(:expense).permit(:cost, :type_id, :expense_name))
     if @expense.save
       flash[:notice] = 'New type of expense added'
     else
