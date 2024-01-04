@@ -10,13 +10,13 @@
   <p> <%= form.submit 'Add expense' %> </p>
 <% end %>
 
-<% @total_expenses.each do |type| %>
-  <%= type %>
+<% @total_expenses.each do |expense| %>
+  <%= expense[0] %> <%= expense[1] %>
 <% end %>
 
 <br>
 
-<% @monthly_expenses.each do |type| %>
-  <%= type %>
+<% @monthly_expenses.each do |expense| %>
+  <%= expense[0] %> <%= expense[1] %>
 <% end %>
 
