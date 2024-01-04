@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - database
+    tty: true
+    stdin_open: true
+    env_file: .env
+    volumes:
+      - .:/app
+      - bundler-store:/usr/local/bundles
+    ports:
+      - 3000:3000
+
+  database:
+    image: postgres
+    restart: always
+    environment:
+     POSTGRES_NAME: expense-tracker
+     POSTGRES_USER: expense-tracker
+     POSTGRES_PASSWORD: expense-tracker
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  db_data:
+  bundler-store:
