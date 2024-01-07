@@ -15,25 +15,23 @@ class HomeController < ApplicationController
 
   private
 
+  def all_type_expenses
+    @all_type_expenses ||= Type.all
+  end
+
   def total_expenses
-    total_expense = Type.all.map(&:total_expense).sum
+    total_expense = all_type_expenses.sum(&:total_expense)
     expense = {}
-    if total_expense > 0
-      Type.all.each do |type|
-        expense[type.name] = ((type.total_expense / total_expense)*100).round(2)
-      end
-    end
+    all_type_expenses.map { |type| expense[type.name] = ((type.total_expense / total_expense) * 100).round(2) } if total_expense > 0
+
     expense
   end
 
   def monthly_expenses
-    total_monthy_expense = Type.all.map(&:month_expense).sum
+    total_monthy_expense = all_type_expenses.sum(&:month_expense)
     expense = {}
-    if total_monthy_expense > 0
-      Type.all.each do |type|
-        expense[type.name] = ((type.month_expense / total_monthy_expense)*100).round(2)
-      end
-    end
+    all_type_expenses.map { |type| expense[type.name] = ((type.month_expense / total_monthy_expense)*100).round(2) } if total_monthy_expense > 0
+
     expense
   end
 end

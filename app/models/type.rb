@@ -4,10 +4,10 @@ class Type < ApplicationRecord
   validates :name, uniqueness: true
 
   def month_expense
-    expenses.current_month.map(&:cost).sum
+    @month_expense ||= expenses.current_month.map(&:cost).sum
   end
 
   def total_expense
-    expenses.map(&:cost).sum
+    @total_expense ||= expenses.map(&:cost).sum
   end
 end
