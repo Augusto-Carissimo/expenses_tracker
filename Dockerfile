@@ -1,4 +1,4 @@
-FROM ruby:alpine
+FROM ruby:3.2.2-alpine3.18
 ENV BUNDLER_VERSION=2.4.13
 RUN apk add --update --no-cache \
       binutils-gold \
