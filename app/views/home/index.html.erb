@@ -10,12 +10,15 @@
   <p> <%= form.submit 'Add expense' %> </p>
 <% end %>
 
+<p> Last expense: <%= @last_expense.expense_name %> - <%= @last_expense.cost.to_d %> </p>
+
+<p> Total </p>
 <% @total_expenses.each do |expense| %>
   <%= expense[0] %> <%= expense[1] %>
 <% end %>
 
 <br>
-
+<p> Monthly </p>
 <% @monthly_expenses.each do |expense| %>
   <%= expense[0] %> <%= expense[1] %>
 <% end %>

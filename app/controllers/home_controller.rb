@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   def index
     @total_expenses = total_expenses
     @monthly_expenses = monthly_expenses
+    @last_expense = Expense.last
   end
 
   def show
